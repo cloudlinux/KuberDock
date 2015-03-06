@@ -1,0 +1,3 @@
+cluster.name: kuberdock
+http.cors.allow-origin: "/.*/"
+http.cors.enabled: true

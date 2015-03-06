@@ -1,0 +1,20 @@
+apiVersion: v1beta2
+id: kuberdock-elasticsearch
+containers:
+  - name: elasticsearch
+    image: kuberdock/elasticsearch:1.0
+    ports:
+      - name: es-port
+        containerPort: 9200
+        hostPort: 9200
+      - name: es-transport-port
+        containerPort: 9300
+        hostPort: 9300
+    volumeMounts:
+      - name: es-persistent-storage
+        mountPath: /elasticsearch/data
+volumes:
+  - name: es-persistent-storage
+    source:
+      hostDir:
+        path: /var/lib/elasticsearch
