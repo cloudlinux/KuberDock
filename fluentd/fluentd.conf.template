@@ -1,0 +1,46 @@
+#
+# docker logs
+#
+
+<source>
+  type tail
+  format json
+  read_from_head true
+  time_key time
+  path /var/lib/docker/containers/*/*-json.log
+  pos_file /var/lib/docker/containers/containers.log.pos
+  time_format %Y-%m-%dT%H:%M:%S
+  tag docker.*
+</source>
+
+<match docker.var.lib.docker.containers.*.*.log>
+  type record_reformer
+  container_id ${tag_parts[5]}
+  hostname @NODENAME@
+  tag docker.all
+</match>
+
+<match docker.all>
+  type elasticsearch
+  host @ES_HOST@
+  logstash_format true
+  logstash_prefix docker
+  flush_interval 10s
+</match>
+
+#
+# rsyslog logs
+#
+
+<source>
+  type syslog
+  tag syslog
+</source>
+
+<match syslog.**>
+  type elasticsearch
+  host @ES_HOST@
+  logstash_format true
+  logstash_prefix syslog
+  flush_interval 10s
+</match>
