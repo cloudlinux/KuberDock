@@ -2,13 +2,13 @@
 
 cp /elasticsearch/config/elasticsearch.yml.template /elasticsearch/config/elasticsearch.yml
 
-if [ -z $ETCD_HOST ]
+if [ -z $MASTER ]
 then
-  ETCD_HOST=etcd
+  MASTER=master
 fi
 
 
-ES_HOSTS=$(python3 -c "import json, requests; print([ str(x['key'].rpartition('/')[2]) for x in json.loads(requests.get('http://$ETCD_HOST:4001/v2/keys/registry/nodes').text)['node']['nodes'] ])")
+ES_HOSTS=$(python3 -c "import json, requests; print([x['labels']['kuberdock-node-hostname'] for x in json.loads(requests.get('http://$MASTER:7080/api/v1beta2/nodes').text)['items']])")
 
 if [ ! -z "$ES_HOSTS" -a "$ES_HOSTS" != "[]" ]
 then
