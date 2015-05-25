@@ -12,4 +12,4 @@ fi
 
 sed -e s/@NODENAME@/$NODENAME/g -e s/@ES_HOST@/$ES_HOST/g fluentd.conf.template > fluentd.conf
 
-exec /usr/sbin/td-agent -c fluentd.conf > /var/log/fluentd.log
+exec /usr/sbin/td-agent -c fluentd.conf
