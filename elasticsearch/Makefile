@@ -2,7 +2,7 @@
 
 VENDOR = kuberdock
 NAME = elasticsearch
-VERSION = 1.0
+VERSION = 1.1
 TAG = $(VENDOR)/$(NAME):$(VERSION)
 TAR = $(VENDOR)_$(NAME)_$(VERSION).tar
 

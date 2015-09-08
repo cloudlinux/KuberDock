@@ -8,7 +8,7 @@ then
 fi
 
 
-ES_HOSTS=$(python3 -c "import json, requests; print([x['labels']['kuberdock-node-hostname'] for x in json.loads(requests.get('http://$MASTER:7080/api/v1beta2/nodes').text)['items']])")
+ES_HOSTS=$(python3 -c "import requests; print([node['metadata']['labels']['kuberdock-node-hostname'] for node in requests.get('https://$MASTER:6443/api/v1/nodes', headers={'Authorization': 'Bearer $TOKEN'}, verify=False).json()['items']])")
 
 if [ ! -z "$ES_HOSTS" -a "$ES_HOSTS" != "[]" ]
 then

@@ -1,6 +1,6 @@
 FROM java:8-jre
 
-ENV ES_PKG_NAME elasticsearch-1.5.0
+ENV ES_PKG_NAME elasticsearch-1.5.2
 
 RUN apt-get update && apt-get -y install python3-requests
 
