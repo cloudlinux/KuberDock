@@ -13,6 +13,7 @@ RUN \
 
 ADD elasticsearch.yml.template /elasticsearch/config/elasticsearch.yml.template
 ADD run.sh /elasticsearch/run.sh
+ADD make_elastic_config.py /elasticsearch/make_elastic_config.py
 
 CMD /elasticsearch/run.sh
 
