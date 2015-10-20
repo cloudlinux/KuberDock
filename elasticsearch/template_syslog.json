@@ -1,0 +1,15 @@
+{
+  "template_syslog" : {
+    "template": "syslog-*",
+    "mappings": {
+      "fluentd": {
+        "properties": {
+          "host": {
+            "index": "not_analyzed",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
