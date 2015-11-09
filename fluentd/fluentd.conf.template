@@ -17,10 +17,10 @@
   type record_reformer
   container_id ${tag_parts[5]}
   hostname @NODENAME@
-  tag docker.all
+  tag cleanup.docker
 </match>
 
-<match docker.all>
+<match docker>
   type elasticsearch
   host @ES_HOST@
   logstash_format true
@@ -34,7 +34,7 @@
 
 <source>
   type syslog
-  tag syslog
+  tag cleanup.syslog
 </source>
 
 <match syslog.**>
@@ -43,4 +43,14 @@
   logstash_format true
   logstash_prefix syslog
   flush_interval 10s
+</match>
+
+#
+# nanoseconds
+#
+
+<match cleanup.**>
+  type record_reformer
+  time_nano ${t = Time.now; ((t.to_i * 1000000000) + t.nsec).to_s}
+  tag ${tag_suffix[1]}
 </match>
