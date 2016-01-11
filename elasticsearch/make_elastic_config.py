@@ -25,13 +25,13 @@ cluster_ips = []
 
 for pod in pods:
     name = pod[u'name']
-    hostname = pod[u'node']
-    ip = pod[u'podIP']
     if not name.startswith(u'kuberdock-logs-'):
         continue
     if pod['status'] != 'running':
         continue
 
+    hostname = pod[u'node']
+    ip = pod[u'podIP']
     if hostname == NODENAME:
         node_ip = ip
         # skip self in unicast.hosts
