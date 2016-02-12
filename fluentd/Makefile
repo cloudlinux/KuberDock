@@ -2,7 +2,7 @@
 
 VENDOR = kuberdock
 NAME = fluentd
-VERSION = 1.4
+VERSION = 1.5
 TAG = $(VENDOR)/$(NAME):$(VERSION)
 TAR = $(VENDOR)_$(NAME)_$(VERSION).tar
 

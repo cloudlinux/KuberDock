@@ -21,5 +21,6 @@ EXPOSE 5140/udp
 
 ADD run.sh /root/
 ADD fluentd.conf.template /root/
+COPY filter_digestadd.rb /etc/td-agent/plugin/
 
 CMD ./run.sh
