@@ -26,6 +26,8 @@
   logstash_format true
   logstash_prefix docker
   flush_interval 10s
+  template_name docker_index_template
+  template_file /root/docker_index_template.json
 </match>
 
 #
@@ -59,6 +61,8 @@
   logstash_format true
   logstash_prefix syslog
   flush_interval 10s
+  template_name syslog_index_template
+  template_file /root/syslog_index_template.json
 </match>
 
 #
